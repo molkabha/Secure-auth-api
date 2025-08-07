@@ -1,19 +1,21 @@
 # Secure Authentication API
 
-Enterprise-grade authentication system built with FastAPI, SQLAlchemy, and JWT, featuring role-based access control, refresh tokens, and secure password hashing.
+![CI](https://github.com/molkabha/secure-auth-api/actions/workflows/tests.yml/badge.svg)
+
+A production-ready authentication system built with FastAPI, PostgreSQL, and JWT. It includes robust security features such as role-based access control, token refresh with reuse prevention, and secure password hashing.
 
 ## Features
 
 - User registration with email, username, and password validation
-- Secure password hashing with bcrypt
-- JWT access and refresh tokens with expiration and revocation
-- Role-based access control (admin and regular users)
-- Token refresh endpoint with reuse prevention
+- Password hashing using Bcrypt via `passlib`
+- Access and refresh tokens using JWT with expiration and revocation logic
+- Role-based access control for admin and regular users
+- Token refresh endpoint with token reuse protection
 - Input validation using Pydantic models
-- SQLAlchemy ORM with PostgreSQL backend
-- CORS middleware with environment-based settings
+- Database integration with SQLAlchemy and PostgreSQL
+- Environment-based CORS configuration
 - Health check and root endpoints
-- Comprehensive automated tests with pytest and pytest-html reporting
+- Automated test suite with Pytest and HTML reporting
 
 ## Tech Stack
 
@@ -24,65 +26,64 @@ Enterprise-grade authentication system built with FastAPI, SQLAlchemy, and JWT, 
 - PostgreSQL
 - JWT via `python-jose`
 - Password hashing via `passlib`
-- Testing with pytest and pytest-html
+- Pytest with `pytest-html` for test reporting
 
-## Setup & Installation
+## Setup and Installation
 
-1. Clone the repository:
+### 1. Clone the Repository
 
-   ```bash
-   git clone https://github.com/yourusername/secure-auth-api.git
-   cd secure-auth-api
-Create and activate a virtual environment:
-
+```bash
+git clone https://github.com/molkabha/secure-auth-api.git
+cd secure-auth-api
+2. Create and Activate a Virtual Environment
 bash
-Copier le code
+Copier
+Modifier
 python -m venv venv
-source venv/bin/activate   # On Windows use: venv\Scripts\activate
-Install dependencies:
-
+source venv/bin/activate         # On Windows: venv\Scripts\activate
+3. Install Dependencies
 bash
-Copier le code
+Copier
+Modifier
 pip install -r requirements.txt
-Configure environment variables:
-
-Create a .env file in the root directory with your settings:
+4. Configure Environment Variables
+Create a .env file in the root directory with the following content:
 
 env
-Copier le code
+Copier
+Modifier
 DATABASE_URL=postgresql://auth_user:auth_password@localhost:5432/auth_api_db
-JWT_SECRET_KEY=your-super-secret-jwt-key-change-this-in-production
+JWT_SECRET_KEY=your-super-secret-jwt-key
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 REFRESH_TOKEN_EXPIRE_DAYS=7
 ENVIRONMENT=development
-Initialize the database (make sure PostgreSQL is running and configured):
-
-The tables will be created automatically on app startup.
+5. Initialize the Database
+Ensure PostgreSQL is running. Tables will be created automatically on application startup.
 
 Running the Application
-Start the FastAPI server:
-
 bash
-Copier le code
+Copier
+Modifier
 uvicorn app.main:app --reload
-Access API documentation at:
+Access the API documentation:
 
 Swagger UI: http://127.0.0.1:8000/docs
 
 ReDoc: http://127.0.0.1:8000/redoc
 
 Running Tests
-Run tests with detailed HTML report generation:
+To run the full test suite and generate an HTML report:
 
 bash
-Copier le code
+Copier
+Modifier
 pytest --html=report.html --self-contained-html
-Open report.html in your browser to view the test report.
+Open report.html in your browser to view the results.
 
 Project Structure
 pgsql
-Copier le code
-
+Copier
+Modifier
 secure-auth-api/
 ├── app/
 │   ├── __init__.py
@@ -102,15 +103,14 @@ secure-auth-api/
 ├── requirements.txt
 ├── .env
 └── README.md
-
 Notes
-Update your .env with strong secrets before deploying to production.
+Replace secrets in .env before deployment.
 
-Use HTTPS in production for secure token transmission.
+Use HTTPS in production to secure token transmission.
 
-Adjust CORS origins in production for security.
+Adjust allowed CORS origins appropriately.
 
-Regularly rotate your JWT secret key.
+Rotate your JWT secret key periodically for enhanced security.
 
-Author
+By:
 Molka Ben Haj Alaya
